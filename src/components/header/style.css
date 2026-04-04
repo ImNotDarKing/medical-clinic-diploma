@@ -1,0 +1,47 @@
+.header {
+	padding: 60px 0;
+	min-height: 720px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: linear-gradient(180deg, rgba(12, 26, 42, 0.92), lab(18.71% 0.46 -21.78 / 0.84)), url('./../../img/header/klipartz.com (13).png') no-repeat center/cover;
+	color: var(--header-text);
+	text-align: center;
+}
+
+.header__wrapper {
+	padding: 0 20px;
+	max-width: 720px;
+}
+
+.header__wrapper {
+	padding: 0 15px;
+	max-width: 660px;
+}
+
+.header__title {
+	margin-bottom: 24px;
+	font-size: 42px;
+	font-weight: 800;
+	line-height: 1.25;
+}
+
+.header__title strong {
+	font-size: 60px;
+	font-weight: 700;
+}
+
+.header__title em {
+	font-style: normal;
+	color: var(--accent);
+}
+
+.header__text {
+	margin-bottom: 40px;
+	font-size: 18px;
+	line-height: 1.333;
+}
+
+.header__text p + p {
+	margin-top: 0.5em;
+}

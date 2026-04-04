@@ -1,0 +1,89 @@
+.reviews-section {
+  padding: 60px 0;
+  background: linear-gradient(180deg, rgba(48, 34, 8, 0.664), lab(10.32% 1.16 -18.41 / 0.84)), url('./../../img/header/klipartz.com (13).png') no-repeat center/cover;
+}
+
+.reviews-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.reviews-arrow {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 24px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.reviews-arrow:hover {
+  background: #0056b3;
+}
+
+.reviews-arrow-left {
+  margin-right: 20px;
+}
+
+.reviews-arrow-right {
+  margin-left: 20px;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+}
+
+.review-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: reviewFadeIn 0.45s ease forwards;
+}
+
+.review-card:nth-child(1) {
+  animation-delay: 0.05s;
+}
+
+.review-card:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.review-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.review-name {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.review-text {
+  color: #666;
+  line-height: 1.5;
+}
+
+@keyframes reviewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

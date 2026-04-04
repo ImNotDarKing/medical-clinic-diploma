@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.76588dba.css",
+    "main.js": "/static/js/main.3c7210a8.js",
+    "static/js/453.7ffbd31f.chunk.js": "/static/js/453.7ffbd31f.chunk.js",
+    "static/media/klipartz.com (13).png": "/static/media/klipartz.com (13).6e20b8e14c798d7e949c.png",
+    "static/media/bolnitsa_wdvaktykbnh5.svg": "/static/media/bolnitsa_wdvaktykbnh5.8314dae965ed044473b208461826af1e.svg",
+    "static/media/gitHub.svg": "/static/media/gitHub.db1e3cfa3aa61658d837d82e113dc1fe.svg",
+    "static/media/polzovatel_tkik1364y7on.svg": "/static/media/polzovatel_tkik1364y7on.fb1e7a15e118664beabdaa2dfe86169e.svg",
+    "index.html": "/index.html",
+    "static/media/default-doctor.svg": "/static/media/default-doctor.1c015f4ca9f7aa695f447d2a99d306cd.svg",
+    "main.76588dba.css.map": "/static/css/main.76588dba.css.map",
+    "main.3c7210a8.js.map": "/static/js/main.3c7210a8.js.map",
+    "453.7ffbd31f.chunk.js.map": "/static/js/453.7ffbd31f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.76588dba.css",
+    "static/js/main.3c7210a8.js"
+  ]
+}
