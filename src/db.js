@@ -5,19 +5,26 @@ let pool = null;
 
 async function initDatabase() {
 	try {
-		pool = new Pool({
-			host: config.dbHost || 'localhost',
-			port: config.dbPort || 5432,
-			database: config.dbName || 'medical_clinic',
-			user: config.dbUser || 'postgres',
-			password: config.dbPassword || '',
+		const poolConfig = {
 			max: 20,
 			idleTimeoutMillis: 30000,
 			connectionTimeoutMillis: 2000,
-		});
+		};
+
+		if (config.databaseUrl) {
+			poolConfig.connectionString = config.databaseUrl;
+		} else {
+			poolConfig.host = config.dbHost || 'localhost';
+			poolConfig.port = config.dbPort || 5432;
+			poolConfig.database = config.dbName || 'medical_clinic';
+			poolConfig.user = config.dbUser || 'postgres';
+			poolConfig.password = config.dbPassword || '';
+		}
+
+		pool = new Pool(poolConfig);
 
 		await pool.connect();
-		console.log(`PostgreSQL БД подключена: ${config.dbHost}:${config.dbPort}/${config.dbName}`);
+		console.log(`PostgreSQL БД подключена: ${config.databaseUrl || `${config.dbHost}:${config.dbPort}/${config.dbName}`}`);
 		await createTablesIfNotExist();
 		return pool;
 	} catch (err) {
