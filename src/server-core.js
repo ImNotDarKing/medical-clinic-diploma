@@ -20,7 +20,7 @@ app.use(cors({
 app.use(express.json());
 
 
-app.use('/img', express.static(path.join(__dirname, '../img')));
+app.use('/img', express.static(path.join(__dirname, '../public/img')));
 
 
 let upload;
