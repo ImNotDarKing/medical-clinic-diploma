@@ -65,17 +65,11 @@ const Profile = () => {
         }
     };
 
-    const loadProfileData = useCallback(async () => {
+    const loadProfileData = useCallback(async (token) => {
         setLoading(true);
         setErrorMessage("");
 
         try {
-            const token = localStorage.getItem("token");
-            if (!token) {
-                navigate("/auth");
-                return;
-            }
-
             const profileRes = await fetch(`${API_BASE_URL}/profile`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
@@ -110,11 +104,13 @@ const Profile = () => {
 
         const decoded = parseJwt(token);
         if (!decoded) {
+            localStorage.removeItem("token");
             navigate("/auth");
             return;
         }
+        
         setUserRole(decoded.role);
-        loadProfileData();
+        loadProfileData(token);
     }, [navigate, loadProfileData]);
 
     const handleEditAppointment = (appointment) => {
