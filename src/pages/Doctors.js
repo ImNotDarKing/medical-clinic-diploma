@@ -9,7 +9,7 @@ const Doctors = () => {
     useEffect(() => {
         const loadDoctors = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/doctors`);
+                const response = await fetch(`${API_BASE_URL}/api/doctors`);
                 const data = await response.json();
                 console.log("Загруженные врачи:", data);
                 setDoctors(data);

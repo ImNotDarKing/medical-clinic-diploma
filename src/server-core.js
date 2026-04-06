@@ -100,7 +100,7 @@ const authenticateAdminToken = (req, res, next) => {
 };
 
 
-app.post('/upload-photo', authenticateToken, upload.single('photo'), async (req, res) => {
+app.post('/api/upload-photo', authenticateToken, upload.single('photo'), async (req, res) => {
 	try {
 		if (!req.file) {
 			return res.status(400).json({ message: 'Файл не загружен' });
@@ -115,7 +115,7 @@ app.post('/upload-photo', authenticateToken, upload.single('photo'), async (req,
 
 		await db.query('UPDATE doctors SET photo_blob = $1, photo_mime_type = $2 WHERE doctor_id = $3', [req.file.buffer, req.file.mimetype, doctorId]);
 
-		res.json({ message: 'Фото загружено', photo_url: `/doctor/${doctorId}/photo` });
+		res.json({ message: 'Фото загружено', photo_url: `/api/doctor/${doctorId}/photo` });
 	} catch (error) {
 		console.error('Ошибка загрузки фото:', error);
 		res.status(500).json({ message: 'Ошибка загрузки файла' });
@@ -123,7 +123,7 @@ app.post('/upload-photo', authenticateToken, upload.single('photo'), async (req,
 });
 
 
-app.get('/doctor/:id/photo', async (req, res) => {
+app.get('/api/doctor/:id/photo', async (req, res) => {
 	try {
 		const db = getDB();
 		const result = await db.query('SELECT photo_blob, photo_mime_type FROM doctors WHERE doctor_id = $1', [req.params.id]);
@@ -138,7 +138,7 @@ app.get('/doctor/:id/photo', async (req, res) => {
 	}
 });
 
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
 	const db = getDB();
 	const { email, password, role } = req.body;
 
@@ -174,7 +174,7 @@ app.post('/register', async (req, res) => {
 });
 
 
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
 	const db = getDB();
 	const { email, password } = req.body;
 
@@ -219,7 +219,7 @@ app.post('/login', async (req, res) => {
 });
 
 
-app.get('/profile', authenticateToken, async (req, res) => {
+app.get('/api/profile', authenticateToken, async (req, res) => {
 	const db = getDB();
 	const user_id = req.user.id;
 	const role = req.user.role;
@@ -233,7 +233,7 @@ app.get('/profile', authenticateToken, async (req, res) => {
 		const result = await db.query('SELECT doctor_id, user_id, first_name, last_name, specialization, experience_years FROM doctors WHERE user_id = $1', [user_id]);
 		const profile = result.rows[0] || {};
 		if (profile.doctor_id) {
-			profile.photo_url = `/doctor/${profile.doctor_id}/photo`;
+			profile.photo_url = `/api/doctor/${profile.doctor_id}/photo`;
 		}
 		res.json(profile);
 	} catch (error) {
@@ -243,7 +243,7 @@ app.get('/profile', authenticateToken, async (req, res) => {
 });
 
 
-app.put('/profile', authenticateToken, async (req, res) => {
+app.put('/api/profile', authenticateToken, async (req, res) => {
 	const db = getDB();
 	const user_id = req.user.id;
 	const role = req.user.role;
@@ -278,7 +278,7 @@ app.put('/profile', authenticateToken, async (req, res) => {
 });
 
 
-app.post('/appointment', authenticateToken, async (req, res) => {
+app.post('/api/appointment', authenticateToken, async (req, res) => {
 	const db = getDB();
 	const { doctor_id, appointment_date, service_type, notes } = req.body;
 	const user_id = req.user.id;
@@ -307,7 +307,7 @@ app.post('/appointment', authenticateToken, async (req, res) => {
 	}
 });
 
-app.put('/appointment/:id', authenticateToken, async (req, res) => {
+app.put('/api/appointment/:id', authenticateToken, async (req, res) => {
 	const db = getDB();
 	const { doctor_notes, status } = req.body;
 	const appointmentId = req.params.id;
@@ -344,7 +344,7 @@ app.put('/appointment/:id', authenticateToken, async (req, res) => {
 	}
 });
 
-app.delete('/appointment/:id', authenticateToken, async (req, res) => {
+app.delete('/api/appointment/:id', authenticateToken, async (req, res) => {
 	const db = getDB();
 	const appointmentId = req.params.id;
 	const user_id = req.user.id;
@@ -366,7 +366,7 @@ app.delete('/appointment/:id', authenticateToken, async (req, res) => {
 	}
 });
 
-app.get('/appointments', authenticateToken, async (req, res) => {
+app.get('/api/appointments', authenticateToken, async (req, res) => {
 	const db = getDB();
 	const user_id = req.user.id;
 	const role = req.user.role;
@@ -418,7 +418,7 @@ app.get('/appointments', authenticateToken, async (req, res) => {
 	}
 });
 
-app.get('/doctors', async (req, res) => {
+app.get('/api/doctors', async (req, res) => {
 	const db = getDB();
 
 	try {
@@ -431,7 +431,7 @@ app.get('/doctors', async (req, res) => {
 });
 
 
-app.post('/admin/login', async (req, res) => {
+app.post('/api/admin/login', async (req, res) => {
 	const { email, password } = req.body;
 
 	try {
@@ -450,7 +450,7 @@ app.post('/admin/login', async (req, res) => {
 });
 
 
-app.get('/admin/doctors', authenticateAdminToken, async (req, res) => {
+app.get('/api/admin/doctors', authenticateAdminToken, async (req, res) => {
 	const db = getDB();
 
 	try {
@@ -466,7 +466,7 @@ app.get('/admin/doctors', authenticateAdminToken, async (req, res) => {
 });
 
 
-app.get('/admin/users', authenticateAdminToken, async (req, res) => {
+app.get('/api/admin/users', authenticateAdminToken, async (req, res) => {
 	const db = getDB();
 
 	try {
@@ -479,7 +479,7 @@ app.get('/admin/users', authenticateAdminToken, async (req, res) => {
 });
 
 
-app.get('/admin/appointments', authenticateAdminToken, async (req, res) => {
+app.get('/api/admin/appointments', authenticateAdminToken, async (req, res) => {
 	const db = getDB();
 
 	try {
@@ -499,7 +499,7 @@ app.get('/admin/appointments', authenticateAdminToken, async (req, res) => {
 });
 
 
-app.delete('/admin/doctors/:id', authenticateAdminToken, async (req, res) => {
+app.delete('/api/admin/doctors/:id', authenticateAdminToken, async (req, res) => {
 	const db = getDB();
 	const doctorId = req.params.id;
 
@@ -517,7 +517,7 @@ app.delete('/admin/doctors/:id', authenticateAdminToken, async (req, res) => {
 });
 
 
-app.delete('/admin/users/:id', authenticateAdminToken, async (req, res) => {
+app.delete('/api/admin/users/:id', authenticateAdminToken, async (req, res) => {
 	const db = getDB();
 	const userId = req.params.id;
 
@@ -535,7 +535,7 @@ app.delete('/admin/users/:id', authenticateAdminToken, async (req, res) => {
 });
 
 
-app.delete('/admin/appointments/:id', authenticateAdminToken, async (req, res) => {
+app.delete('/api/admin/appointments/:id', authenticateAdminToken, async (req, res) => {
 	const db = getDB();
 	const appointmentId = req.params.id;
 

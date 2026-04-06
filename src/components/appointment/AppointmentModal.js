@@ -61,7 +61,7 @@ const AppointmentModal = ({ doctorId, doctorName, onClose }) => {
         }
 
         try {
-            const response = await fetch(`${API_BASE_URL}/appointment`, {
+            const response = await fetch(`${API_BASE_URL}/api/appointment`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

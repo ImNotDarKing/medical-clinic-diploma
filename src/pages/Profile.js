@@ -26,7 +26,7 @@ const Profile = () => {
 
         try {
             const appointmentsRes = await fetch(
-                `${API_BASE_URL}/appointments${statusQuery}`,
+                `${API_BASE_URL}/api/appointments${statusQuery}`,
                 { headers: { "Authorization": `Bearer ${token}` } }
             );
             const apps = await appointmentsRes.json();
@@ -70,7 +70,7 @@ const Profile = () => {
         setErrorMessage("");
 
         try {
-            const profileRes = await fetch(`${API_BASE_URL}/profile`, {
+            const profileRes = await fetch(`${API_BASE_URL}/api/profile`, {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             const profile = await profileRes.json();
@@ -127,7 +127,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
 
         try {
-            const response = await fetch(`${API_BASE_URL}/appointment/${appointmentId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/appointment/${appointmentId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -192,7 +192,7 @@ const Profile = () => {
                 const formDataWithPhoto = new FormData();
                 formDataWithPhoto.append('photo', photoFile);
 
-                const uploadRes = await fetch(`${API_BASE_URL}/upload-photo`, {
+                const uploadRes = await fetch(`${API_BASE_URL}/api/upload-photo`, {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${token}`
@@ -210,7 +210,7 @@ const Profile = () => {
                 }
             }
 
-            const response = await fetch(`${API_BASE_URL}/profile`, {
+            const response = await fetch(`${API_BASE_URL}/api/profile`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -244,7 +244,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
 
         try {
-            const response = await fetch(`${API_BASE_URL}/appointment/${appointmentId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/appointment/${appointmentId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`

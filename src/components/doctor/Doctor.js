@@ -18,7 +18,7 @@ const Doctor = ({ id, title, specialization }) => {
             <li className="doctor">
                 <div onClick={() => setShowModal(true)} style={{ cursor: 'pointer' }}>
                     <img 
-                        src={imgError ? defaultDoctor : `${API_BASE_URL}/doctor/${id}/photo`}
+                        src={imgError ? defaultDoctor : `${API_BASE_URL}/api/doctor/${id}/photo`}
                         alt={title} 
                         className="doctor__img"
                         onError={handleImgError}

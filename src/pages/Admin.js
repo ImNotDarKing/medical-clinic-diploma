@@ -48,9 +48,9 @@ const Admin = () => {
             const headers = { "Authorization": `Bearer ${adminToken}` };
 
             const [doctorsData, usersData, appointmentsData] = await Promise.all([
-                fetchJson(`${API_BASE_URL}/admin/doctors`, { headers }),
-                fetchJson(`${API_BASE_URL}/admin/users`, { headers }),
-                fetchJson(`${API_BASE_URL}/admin/appointments`, { headers }),
+                fetchJson(`${API_BASE_URL}/api/admin/doctors`, { headers }),
+                fetchJson(`${API_BASE_URL}/api/admin/users`, { headers }),
+                fetchJson(`${API_BASE_URL}/api/admin/appointments`, { headers }),
             ]);
 
             setDoctors(doctorsData);
@@ -86,7 +86,7 @@ const Admin = () => {
         setMessage({ text: "", type: "" });
 
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/login`, {
+            const response = await fetch(`${API_BASE_URL}/api/admin/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(loginData)
@@ -120,7 +120,7 @@ const Admin = () => {
         if (!window.confirm("Вы уверены?")) return;
 
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/doctors/${doctorId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/admin/doctors/${doctorId}`, {
                 method: "DELETE",
                 headers: { "Authorization": `Bearer ${localStorage.getItem("adminToken")}` }
             });
@@ -140,7 +140,7 @@ const Admin = () => {
         if (!window.confirm("Вы уверены?")) return;
 
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/users/${userId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/admin/users/${userId}`, {
                 method: "DELETE",
                 headers: { "Authorization": `Bearer ${localStorage.getItem("adminToken")}` }
             });
@@ -160,7 +160,7 @@ const Admin = () => {
         if (!window.confirm("Вы уверены?")) return;
 
         try {
-            const response = await fetch(`${API_BASE_URL}/admin/appointments/${appointmentId}`, {
+            const response = await fetch(`${API_BASE_URL}/api/admin/appointments/${appointmentId}`, {
                 method: "DELETE",
                 headers: { "Authorization": `Bearer ${localStorage.getItem("adminToken")}` }
             });
