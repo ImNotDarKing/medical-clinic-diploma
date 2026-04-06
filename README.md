@@ -327,18 +327,6 @@ npm run start:prod          # Собрать frontend и запустить serv
 
 ---
 
-## ✅ Готовность к деплою на Railway
-
-Сайт почти готов к Railway, но нужно обязательно:
-
-- настроить PostgreSQL на Railway;
-- задать реальные env-переменные;
-- при необходимости сопоставить `DATABASE_URL` с переменными `DB_*`.
-
-Если вы вручную зададите `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER` и `DB_PASSWORD`, то сайт запустится без дополнительных изменений.
-
----
-
 ## 👤 Администратор
 
 - Email: `admin@example.com`
@@ -355,3 +343,5 @@ npm run start:prod          # Собрать frontend и запустить serv
 ## 📌 Контакты
 
 Проект создан для курса 4ИСПр, 2026.
+ - GitHub: ImNotDarKing
+ - Railway: https://graceful-miracle-production-171a.up.railway.app
