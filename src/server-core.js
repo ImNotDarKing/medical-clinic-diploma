@@ -553,15 +553,13 @@ app.delete('/admin/appointments/:id', authenticateAdminToken, async (req, res) =
 });
 
 
-// Serve React app (both production and development)
 const buildPath = path.join(__dirname, '../build');
 console.log('Checking for React build at:', buildPath);
 console.log('Build folder exists:', fs.existsSync(buildPath));
 
-// Serve static files from build directory
 app.use(express.static(buildPath));
 
-// Catch all other routes and serve index.html for React Router (must be last)
+
 app.use((req, res) => {
 	const indexPath = path.join(buildPath, 'index.html');
 	res.sendFile(indexPath, (err) => {
