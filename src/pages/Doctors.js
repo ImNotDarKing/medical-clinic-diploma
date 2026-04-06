@@ -37,6 +37,7 @@ const Doctors = () => {
                         id={doctor.doctor_id} 
                         title={`${doctor.first_name} ${doctor.last_name}`}
                         specialization={doctor.specialization}
+                        experience_years={doctor.experience_years}
                     />
                 ))}
                 </ul>

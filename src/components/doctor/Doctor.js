@@ -4,7 +4,7 @@ import API_BASE_URL from "../../api/config";
 import defaultDoctor from "../../img/default-doctor.svg";
 import "./style.css";
 
-const Doctor = ({ id, title, specialization }) => {
+const Doctor = ({ id, title, specialization, experience_years }) => {
     const [showModal, setShowModal] = useState(false);
     const [imgError, setImgError] = useState(false);
 
@@ -25,6 +25,9 @@ const Doctor = ({ id, title, specialization }) => {
                     />
                     <h3 className="doctor__title">{title}</h3>
                     {specialization && <p className="doctor__specialty">{specialization}</p>}
+                    {experience_years !== undefined && experience_years !== null && (
+                        <p className="doctor__experience">Опыт: {experience_years} {experience_years === 1 ? 'год' : experience_years >= 2 && experience_years <= 4 ? 'года' : 'лет'}</p>
+                    )}
                 </div>
             </li>
 

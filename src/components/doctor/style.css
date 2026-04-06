@@ -2,43 +2,53 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 24px;
     list-style: none;
     padding: 0;
 }
 
 .doctor {
-    max-width: 370px;
-    background-color: var(--project-card-bg); 
+    flex: 1 1 420px;
+    max-width: 420px;
+    min-width: 320px;
+    background-color: var(--project-card-bg);
     box-shadow: var(--box-shadow);
-    border-radius: 10px;
+    border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.2s ease-in;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .doctor:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 26px 60px rgba(16, 34, 48, 0.18);
 }
 
 .doctor__img {
     width: 100%;
-    height: 200px;
+    height: 260px;
     object-fit: cover;
-    border-radius: 10px 10px 0 0;
+    border-radius: 16px 16px 0 0;
 }
 
 .doctor__title {
-    padding: 15px 20px 25px;
+    padding: 20px 24px 8px;
     font-weight: 700;
-    font-size: 24px;
-    line-height: 1.3;
-    color: var(--project-card-text); 
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--project-card-text);
 }
 
 .doctor__specialty {
-    padding: 0 20px 20px;
+    padding: 0 24px 8px;
+    font-size: 15px;
+    color: #4f4f4f;
+}
+
+.doctor__experience {
+    padding: 0 24px 24px;
     font-size: 14px;
-    color: #666;
+    color: #007bff;
+    font-weight: 600;
 }
 
 .doctor-photo-display {
